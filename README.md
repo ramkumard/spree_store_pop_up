@@ -1,13 +1,18 @@
-SpreeStorePopUp
+Installation
 ===============
 
-Introduction goes here.
+    Add the Spree Store Pop Up gem to your Gemfile:
 
+    gem "spree_store_pop_up", :git => 'git@github.com:vijaypapasani/spree_store_pop_up.git', :branch => 'master'
 
-Example
-=======
+    Install the gem:
 
-Example goes here.
+    bundle install
+
+    Install the assets:
+
+    rails g spree_store_pop_up:install
+
 
 Testing
 -------
