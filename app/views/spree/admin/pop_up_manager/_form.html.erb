@@ -1,0 +1,59 @@
+<fieldset data-hook="admin_pop_up_manager_form_fields">
+
+
+
+  <div class="clearfix">
+    <div class="left eight columns alpha" data-hook="admin_pop_up_manager_form_left">
+
+      <%= f.field_container :title do %>
+          <%= f.label :name, raw(t('popup_manager.title') + content_tag(:span, ' *', :class => 'required')) %>
+          <%= f.text_field :title, :class => 'fullwidth' %>
+          <%= f.error_message_on :title %>
+      <% end %>
+
+      <%= f.field_container :show_daily do %>
+          <%= f.label :show_daily, t('popup_manager.show_daily') %>
+          <%= f.check_box :show_daily, :class => 'fullwidth' %>
+          <%= f.error_message_on :show_daily %>
+      <% end %>
+
+
+
+      <%= f.field_container :start_date do %>
+          <%= f.label :start_date, t('popup_manager.start_date') %>
+          <%= f.text_field :start_date, :class => 'timepicker' %>
+          <%= f.error_message_on :start_date %>
+      <% end %>
+
+      <%= f.field_container :end_date do %>
+          <%= f.label :end_date, t('popup_manager.end_date') %>
+          <%= f.text_field :end_date, :class => 'timepicker' %>
+          <%= f.error_message_on :end_date %>
+      <% end %>
+
+      <%= f.field_container :body do %>
+          <%= f.label :body %><span class="required">*</span><br />
+          <%= f.text_area :body, {:class => 'fullwidth'} %>
+          <%= f.error_message_on :body %>
+      <% end %>
+
+
+      <%= f.field_container :status do %>
+          <%= f.label :start_date, t('popup_manager.status') %>
+          <%= f.select :status, options_for_select([  ['Inactive', 0], ['Active', 1] ]) %>
+          <%= f.error_message_on :start_date %>
+      <% end %>
+
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <% if !@pop_up_manager.nil? and  @pop_up_manager.new_record? %>
+          <%= f.submit 'create' %>
+        <% else %>
+          <%= f.submit 'update' %>
+        <% end %>
+        <span class="or"><%= t(:or) %></span>
+        <%= link_to_with_icon 'icon-remove', t('actions.cancel'), admin_pop_up_manager_path, :class => 'button' %>
+      </div>
+
+    </div>
+  </div>
+</fieldset>

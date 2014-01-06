@@ -1,0 +1,20 @@
+<% content_for :page_title do %>
+    <%= t('spree.pop_up_manager.title.new') %>
+<% end %>
+
+<div data-hook="admin_pop_up_manager_new_form">
+  <div id="pop-up-manager-form-wrapper">
+
+    <% if @pop_up_manager.try(:errors).present? %>
+        <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @pop_up_manager } %>
+    <% end %>
+
+    <%= form_for :pop_up_manager , :url => { :controller => "spree/admin/pop_up_manager", :action => 'update'} do |f| %>
+
+     <%= render 'form', :f =>  f %>
+
+    <% end %>
+
+  </div>
+</div>
+

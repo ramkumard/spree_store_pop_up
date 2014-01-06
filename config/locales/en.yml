@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  popup_manager:
+   title: "Title"
+   start_date: "Start Date"
+   end_date:  "End Date"
+   status: "Status"

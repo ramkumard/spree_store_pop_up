@@ -1,1 +1,57 @@
-<h1>Pop Up Manager</h1>
+<% content_for :page_title do %>
+    <%= t(:pop_up_manager) %>
+<% end %>
+
+<% content_for :page_actions do %>
+    <li>
+      <%= button_link_to t(:new_pop_up_manager), 'pop_up_manager/new', :icon => 'icon-plus' %>
+    </li>
+<% end %>
+
+<% unless @pop_up_managers.any? %>
+    <div class="no-objects-found">
+      <%= t(:no_promotions_found) %>.
+      <%= link_to t(:add_one), new_pop_up_manager_path %>!
+    </div>
+<% else %>
+    <table class="index" >
+      <colgroup>
+        <col style="width: 20%">
+        <col style="width: 10%">
+        <col style="width: 10%">
+        <col style="width: 20%">
+        <col style="width: 20%">
+        <col style="width: 20%">
+      </colgroup>
+      <thead>
+      <tr>
+        <th><%= t(:title) %></th>
+        <th><%= t(:show_daily) %></th>
+        <th><%= t(:start_date) %></th>
+        <th><%= t(:end_date) %></th>
+        <th><%= t(:status) %></th>
+        <th class="actions"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @pop_up_managers.each do |pop_up_manager| %>
+          <tr id="<%= spree_dom_id pop_up_manager %>" class="<%= cycle('odd', 'even')%>">
+            <td><%= pop_up_manager.title %></td>
+            <td class="align-center"><%= pop_up_manager.show_daily %></td>
+            <!--<td ><%#= raw pop_up_manager.body %></td>-->
+            <td class="align-center"><%= pop_up_manager.start_date %></td>
+            <td class="align-center"><%= pop_up_manager.end_date %></td>
+            <% if pop_up_manager.status == true %>
+                <td class="align-center">Active</td>
+            <% else %>
+                <td class="align-center">InActive</td>
+            <% end %>
+            <td class="actions">
+              <%= link_to_edit  pop_up_manager, :no_text => true %>
+              <%#= link_to_delete [pop_up_manager], :no_text => true %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>

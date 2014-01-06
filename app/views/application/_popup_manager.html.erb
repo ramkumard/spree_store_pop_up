@@ -1,0 +1,77 @@
+
+<!-- new year greetings -->
+<%  @pop_up_manager = Spree::PopUpManager.where(:status => true).first rescue nil %>
+
+<% if !@pop_up_manager.nil? %>
+
+    <% start_date = @pop_up_manager.start_date %>
+    <% end_date = @pop_up_manager.end_date %>
+
+
+        <% if !cookies[:active_popup].eql? 'true' and  !session[:active_popup].eql? true  and @pop_up_manager.show_daily.eql? true %>
+
+        <%= raw @pop_up_manager.body %>
+
+        <% elsif !cookies[:active_popup].eql? 'true' and  !session[:active_popup].eql? true and  ( Time.zone.now > start_date and Time.zone.now < end_date )   %>
+
+         <!--<div id="betaModal2" class="modal hide fade" style="width:475px;height:441px; left:54%">-->
+          <!--<div class="modal-header">-->
+            <!--<%#= link_to image_tag('http://images.styletagassets.com/editor/pictures/46/content_pop_up.jpg'), 'javascript:void(0)', :id => 'popup_alert' %>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <%= raw @pop_up_manager.body %>
+
+        <% end %>
+
+
+
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#betaModal2').modal({
+
+            });
+        });
+
+
+
+        $('#popup_alert').click(function(){
+            $('#betaModal2').hide();
+            $('.modal-backdrop').hide();
+            $.ajax({
+                type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
+            }).done(function() {
+
+                    });
+        });
+
+        $(document).keydown(function(e) {
+            if (e.keyCode == 27) {
+                $('#betaModal2').hide();
+                $('.modal-backdrop').hide();
+
+                $.ajax({
+                    type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @id %>' }
+                })
+
+            }
+        });
+
+
+
+
+    </script>
+    <!-- End new year greetings -->
+<% end %>
+
+<style type="text/css">
+
+    /*new year pop up modal */
+
+    #betaModal2 .modal-header {
+        margin:0;
+        padding:0;
+        border:0;
+        height:389px;
+    }
+</style>
