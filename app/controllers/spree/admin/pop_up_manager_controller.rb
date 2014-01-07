@@ -17,7 +17,7 @@ module Spree
           flash[:notice] = "Popup was created successfully"
           redirect_to admin_pop_up_manager_path
         else
-          render :action => [:admin, 'new' ]
+          render :action => 'new'
         end
       end
 
@@ -31,7 +31,7 @@ module Spree
           flash[:notice] = "Popup was updated successfully"
           redirect_to admin_pop_up_manager_path
         else
-          render :action => [:admin, 'edit']
+          render :action => 'edit'
         end
       end
 
@@ -43,9 +43,9 @@ module Spree
 
           if @pop_up_manager.show_daily == true
 
-              cookies[:active_popup] =  session[:active_popup] = true
+            cookies[:active_popup] =  session[:active_popup] = true
 
-           else
+          else
 
             start_date = @pop_up_manager.start_date
             end_date = @pop_up_manager.end_date
@@ -56,7 +56,7 @@ module Spree
 
           end
 
-            render :json => :nothing
+          render :json => :nothing
 
         else
           redirect_to '/'
@@ -64,7 +64,7 @@ module Spree
       end
 
       def destroy
-         params
+        params
       end
 
       private
