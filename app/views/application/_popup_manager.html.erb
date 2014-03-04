@@ -49,7 +49,7 @@
             if (e.keyCode == 27) {
                 $('#betaModal2').hide();
                 $('.modal-backdrop').hide();
-                  alert(1);
+
                 $.ajax({
                     type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
                 })
