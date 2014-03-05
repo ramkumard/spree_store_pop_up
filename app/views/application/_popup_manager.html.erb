@@ -35,7 +35,7 @@
 
 
 
-        $('#popup_alert').click(function(){
+        $('.popup_alert').click(function(){
             $('#betaModal2').hide();
             $('.modal-backdrop').hide();
             $.ajax({
@@ -51,7 +51,7 @@
                 $('.modal-backdrop').hide();
 
                 $.ajax({
-                    type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @id %>' }
+                    type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
                 })
 
             }
