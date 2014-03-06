@@ -7,12 +7,14 @@
     <% start_date = @pop_up_manager.start_date %>
     <% end_date = @pop_up_manager.end_date %>
 
+        <% Rails.logger.info(">>>>>>>>>>>>>>>>> #{cookies[:active_popup]}" ) %>
+        <% Rails.logger.info(">>>>>>>>>>>>>>>>> #{!cookies[:active_popup].eql? 'true'}" ) %>
 
-        <% if !cookies[:active_popup].eql? 'true' and  !session[:active_popup].eql? true  and @pop_up_manager.show_daily.eql? true %>
+        <% if !cookies[:active_popup].eql? 'true'  and @pop_up_manager.show_daily.eql? true %>
 
         <%= raw @pop_up_manager.body %>
 
-        <% elsif !cookies[:active_popup].eql? 'true' and  !session[:active_popup].eql? true and  ( Time.zone.now > start_date and Time.zone.now < end_date )   %>
+        <% elsif !cookies[:active_popup].eql? 'true' and  ( Time.zone.now > start_date and Time.zone.now < end_date )   %>
 
          <!--<div id="betaModal2" class="modal hide fade" style="width:475px;height:441px; left:54%">-->
           <!--<div class="modal-header">-->
