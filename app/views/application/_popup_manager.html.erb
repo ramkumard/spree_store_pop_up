@@ -8,7 +8,7 @@
     <% end_date = @pop_up_manager.end_date %>
 
      <% if cookies[:active_popup].blank? and @pop_up_manager.show_daily.eql? true %>
-        <%= cookies[:active_popup] = true %>
+        <% cookies[:active_popup] = true %>
         <%= raw @pop_up_manager.body %>
 
         <% elsif cookies[:active_popup].blank? and  ( Time.zone.now > start_date and Time.zone.now < end_date )   %>
@@ -18,7 +18,7 @@
             <!--<%#= link_to image_tag('http://images.styletagassets.com/editor/pictures/46/content_pop_up.jpg'), 'javascript:void(0)', :id => 'popup_alert' %>-->
           <!--</div>-->
         <!--</div>-->
-        <%= cookies[:active_popup] = true %>
+        <% cookies[:active_popup] = true %>
         <%= raw @pop_up_manager.body %>
 
         <% end %>
