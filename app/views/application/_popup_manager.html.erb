@@ -7,20 +7,18 @@
     <% start_date = @pop_up_manager.start_date %>
     <% end_date = @pop_up_manager.end_date %>
 
-      <% Rails.logger.info("pop up session >>>>> #{session[:active_popup]}" ) %>
-
-     <% if !session[:active_popup].eql? true  and @pop_up_manager.show_daily.eql? true %>
-
+     <% if cookies[:active_popup].blank? and @pop_up_manager.show_daily.eql? true %>
+        <%= cookies[:active_popup] = true %>
         <%= raw @pop_up_manager.body %>
 
-        <% elsif  !session[:active_popup].eql? true and  ( Time.zone.now > start_date and Time.zone.now < end_date )   %>
+        <% elsif cookies[:active_popup].blank? and  ( Time.zone.now > start_date and Time.zone.now < end_date )   %>
 
          <!--<div id="betaModal2" class="modal hide fade" style="width:475px;height:441px; left:54%">-->
           <!--<div class="modal-header">-->
             <!--<%#= link_to image_tag('http://images.styletagassets.com/editor/pictures/46/content_pop_up.jpg'), 'javascript:void(0)', :id => 'popup_alert' %>-->
           <!--</div>-->
         <!--</div>-->
-
+        <%= cookies[:active_popup] = true %>
         <%= raw @pop_up_manager.body %>
 
         <% end %>
@@ -40,7 +38,7 @@
             $('#betaModal2').hide();
             $('.modal-backdrop').hide();
             $.ajax({
-                type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
+                type: "GET", url: '<%#= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
             }).done(function() {
 
                     });
@@ -52,7 +50,7 @@
                 $('.modal-backdrop').hide();
 
                 $.ajax({
-                    type: "GET", url: '<%= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
+                    type: "GET", url: '<%#= show_popup_pop_up_manager_index_path %>' , dataType: 'json', data: { id: '<%=  @pop_up_manager.id rescue 0 %>' }
                 })
 
             }
