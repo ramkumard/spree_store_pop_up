@@ -1,7 +1,7 @@
 
 <!-- new year greetings -->
 <%  @pop_up_manager = Spree::PopUpManager.where(:status => true).first rescue nil %>
-
+ 111<%= cookies[:active_popup] %>
 <% if !@pop_up_manager.nil? %>
 
     <% start_date = @pop_up_manager.start_date %>
