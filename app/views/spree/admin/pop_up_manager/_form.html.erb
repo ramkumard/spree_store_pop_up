@@ -40,7 +40,7 @@
 
       <%= f.field_container :status do %>
           <%= f.label :start_date, t('popup_manager.status') %>
-          <%= f.select :status, options_for_select([  ['Inactive', 0], ['Active', 1] ]) %>
+          <%= f.select :status, options_for_select([  ['Inactive', 0], ['Active', 1] ], :selected => (!@pop_up_manager.nil? and @pop_up_manager.status == true) ? 1 : 0 ) %>
           <%= f.error_message_on :start_date %>
       <% end %>
 
