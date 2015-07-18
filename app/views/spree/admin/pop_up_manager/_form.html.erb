@@ -31,6 +31,12 @@
           <%= f.error_message_on :end_date %>
       <% end %>
 
+      <%= f.field_container :contains do %>
+          <%= f.label :show_on_url_containing  %>
+          <%= f.text_field :contains, :class => 'fullwidth' %>
+          <%= f.error_message_on :title %>
+      <% end %>
+
       <%= f.field_container :body do %>
           <%= f.label :body %><span class="required">*</span><br />
           <%= f.text_area :body, {:class => 'fullwidth'} %>
