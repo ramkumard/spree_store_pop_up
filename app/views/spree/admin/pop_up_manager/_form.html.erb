@@ -17,7 +17,11 @@
           <%= f.error_message_on :show_daily %>
       <% end %>
 
-
+      <%= f.field_container :is_logged do %>
+          <%= f.label :hide_for_logged_in_user %>
+          <%= f.check_box :is_logged, :class => 'fullwidth' %>
+          <%= f.error_message_on :is_logged %>
+      <% end %>
 
       <%= f.field_container :start_date do %>
           <%= f.label :start_date, t('popup_manager.start_date') %>
@@ -49,6 +53,7 @@
           <%= f.select :status, options_for_select([  ['Inactive', 0], ['Active', 1] ], :selected => (!@pop_up_manager.nil? and @pop_up_manager.status == true) ? 1 : 0 ) %>
           <%= f.error_message_on :start_date %>
       <% end %>
+
 
       <div class="form-buttons filter-actions actions" data-hook="buttons">
         <% if !@pop_up_manager.nil? and  @pop_up_manager.new_record? %>
